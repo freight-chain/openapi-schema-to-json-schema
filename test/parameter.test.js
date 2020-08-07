@@ -1,12 +1,8 @@
-var test = require('tape')
-	, convert = require('../')
-;
+var test = require('tape'),
+	convert = require('../');
 
 test('converting a minimal OpenAPI 3.0 parameter', function(assert) {
-	var schema
-		, result
-		, expected
-	;
+	var schema, result, expected;
 
 	assert.plan(1);
 
@@ -30,10 +26,7 @@ test('converting a minimal OpenAPI 3.0 parameter', function(assert) {
 });
 
 test('converting an extensive OpenAPI 3.0 parameter', function(assert) {
-	var schema
-		, result
-		, expected
-	;
+	var schema, result, expected;
 
 	assert.plan(1);
 
@@ -64,10 +57,7 @@ test('converting an extensive OpenAPI 3.0 parameter', function(assert) {
 });
 
 test('converting a OpenAPI 3.0 parameter with MIME schemas', function(assert) {
-	var schema
-		, result
-		, expected
-	;
+	var schema, result, expected;
 
 	assert.plan(1);
 
@@ -107,10 +97,7 @@ test('converting a OpenAPI 3.0 parameter with MIME schemas', function(assert) {
 });
 
 test('converting a OpenAPI 3.0 parameter with MIMEs without a schema', function(assert) {
-	var schema
-		, result
-		, expected
-	;
+	var schema, result, expected;
 
 	assert.plan(1);
 
@@ -144,10 +131,7 @@ test('converting a OpenAPI 3.0 parameter with MIMEs without a schema', function(
 });
 
 test('using a OpenAPI 3.0 parameter description', function(assert) {
-	var schema
-		, result
-		, expected
-	;
+	var schema, result, expected;
 
 	assert.plan(1);
 
@@ -180,14 +164,13 @@ test('throwing on OpenAPI 3.0 parameters without schemas', function(assert) {
 		in: 'cookie',
 	};
 
-	assert.throws(function() { convert.fromParameter(schema); }, /InvalidInputError/);
+	assert.throws(function() {
+		convert.fromParameter(schema);
+	}, /InvalidInputError/);
 });
 
 test('doesnt throw for parameters without schemas with stricMode disabled', function(assert) {
-	var schema
-		, result
-		, expected
-	;
+	var schema, result, expected;
 
 	assert.plan(1);
 
@@ -196,7 +179,9 @@ test('doesnt throw for parameters without schemas with stricMode disabled', func
 		in: 'cookie',
 	};
 
-  result = convert.fromParameter(schema, { strictMode : false });
+	result = convert.fromParameter(schema, {
+		strictMode: false
+	});
 
 	expected = {
 		$schema: 'http://json-schema.org/draft-04/schema#',
